@@ -1,7 +1,7 @@
 Lumisat website
 ----
 
-Visit [lumisat.fr](http://lumisat.fr).
+Visit [lumisat.fr](https://lumisat.fr).
 
 <br>
 
