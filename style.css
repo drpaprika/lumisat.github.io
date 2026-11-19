@@ -7,6 +7,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Daytona Condensed";
+  src: url("fonts/daytona_condensed_bold/DaytonaW04-CondensedBold.woff2") format("woff2"),
+    url("fonts/daytona_condensed_bold/web/font/DaytonaW04-CondensedBold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --surface: #e7ecf2;
@@ -124,7 +133,6 @@ body {
   padding-left: 0.16em;
   font-size: clamp(1.75rem, 7.5vw, 3.75rem);
   font-weight: 700;
-  font-synthesis: weight;
   line-height: 1.2;
   letter-spacing: 0.16em;
 }
@@ -150,7 +158,6 @@ body {
   color: var(--accent);
   font-size: 1.125rem;
   font-weight: 700;
-  font-synthesis: weight;
   line-height: 1.5;
   text-decoration: none;
   box-shadow: 7px 7px 15px var(--shadow), -7px -7px 15px var(--light);
