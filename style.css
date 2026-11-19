@@ -40,7 +40,7 @@ body {
   min-height: 100svh;
   background:
     linear-gradient(rgb(0 0 0 / 18%), rgb(0 0 0 / 18%)),
-    #0b111b url("images/laser_illustration.png") center / cover no-repeat;
+    #0b111b url("images/background_illustration.png") center / cover no-repeat;
   display: grid;
   place-items: center;
   padding: clamp(1.5rem, 6vw, 5rem);
