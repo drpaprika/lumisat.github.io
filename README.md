@@ -1,8 +1,11 @@
-Lumisat website
-----
+# Site web de Lumisat
 
-Visit <a href="https://lumisat.fr" target="_blank">lumisat.fr</a>.
+Disponible à l'adresse <a href="https://lumisat.fr" target="_blank">lumisat.fr</a>.
 
-<br>
+Installer l'extension "Live Server" (de Ritwick Dey) et cliquer sur "Open with Live Server" sur `index.html` pour visualiser les changements en direct.
 
-Install the extension "Live Server" (by Ritwick Dey) and click "Open with Live Server" to preview live changes.
+Pour visualiser en mode mobile :
+- Ouvrir la page avec Live Server
+- Dans le navigateur, appuyer sur F12
+- Cliquer sur l'icone "Vue adaptative" (ou Ctrl+Shift+M)
+- Choisir un téléphone dans la liste.
