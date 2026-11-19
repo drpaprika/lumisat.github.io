@@ -1,47 +1,48 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <title>Lumisat.fr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Google Font (optional) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <meta name="description" content="LUMISAT — bientôt disponible. Contactez-nous." />
+  <meta name="theme-color" content="#e7ecf2" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page">
-    <section class="hero">
+  <main class="page">
+    <section class="hero" aria-labelledby="brand">
       <div class="hero-inner">
-        <h1 class="brand">LUMISAT</h1>
+        <div class="orbit" aria-hidden="true">
+          <svg class="orbit-curve" viewBox="0 0 88 88" focusable="false">
+            <defs>
+              <!-- Gaussian intensity across the beam: brightest on its horizontal axis. -->
+              <linearGradient id="orbit-intensity" x1="44" y1="9.8873" x2="44" y2="15.8873" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-opacity="0.011" />
+                <stop offset="10%" stop-opacity="0.056" />
+                <stop offset="20%" stop-opacity="0.198" />
+                <stop offset="30%" stop-opacity="0.487" />
+                <stop offset="40%" stop-opacity="0.835" />
+                <stop offset="50%" stop-opacity="1" />
+                <stop offset="60%" stop-opacity="0.835" />
+                <stop offset="70%" stop-opacity="0.487" />
+                <stop offset="80%" stop-opacity="0.198" />
+                <stop offset="90%" stop-opacity="0.056" />
+                <stop offset="100%" stop-opacity="0.011" />
+              </linearGradient>
+            </defs>
+            <rect x="12.8873" y="9.8873" width="62.2254" height="6" />
+          </svg>
+          <span></span>
+        </div>
+        <h1 class="brand" id="brand">LUMISAT</h1>
+        <p class="coming-soon">Bientôt disponible</p>
 
-        <!-- <img
-          src="/images/laser_illustration.png"
-          alt="LUMISAT satellite"
-          class="satellite"
-        /> -->
-
-        <h3 class="coming-soon">coming soon</h3>
-
-        <a href="mailto:gregoire@lumisat.fr" class="cta">
-          Contact us
+        <a href="mailto:gregoire.hein@lumisat.fr" class="cta">
+          Contactez-nous
         </a>
       </div>
     </section>
-  </div>
-
-  <script>
-    // Minimal JS just to trigger the fade-in once everything is ready
-    document.addEventListener("DOMContentLoaded", function () {
-      document.body.classList.add("is-loaded");
-    });
-  </script>
+  </main>
 </body>
 </html>

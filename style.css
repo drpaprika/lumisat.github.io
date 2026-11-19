@@ -1,198 +1,243 @@
-/* style.css */
+﻿@font-face {
+  font-family: "Daytona Condensed";
+  src: url("fonts/daytona_condensed/DaytonaW01-Condensed.woff2") format("woff2"),
+    url("fonts/daytona_condensed/web/font/DaytonaW01-Condensed.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --surface: #e7ecf2;
+  --shadow: #c3cbd6;
+  --light: #ffffff;
+  --text: #293b52;
+  --muted: #586b82;
+  --accent: #a64b16;
+  --beam: #a64b16;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+body {
   margin: 0;
-  padding: 0;
-}
-
-/* Prevent scrolling */
-html,
-body {
-  height: 100%;
-}
-
-body {
-  font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
+  background: var(--surface);
+  color: var(--text);
+  font-family: "Daytona Condensed", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
-  background-color: #000;
-  color: #fff;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 600ms ease;
-}
-
-body.is-loaded {
-  opacity: 1;
+  font-size: 1rem;
+  font-weight: 400;
+  font-synthesis: none;
 }
 
 .page {
-  position: relative;
-  width: 100%;
-  height: 100vh;
   min-height: 100vh;
+  min-height: 100svh;
+  background:
+    linear-gradient(rgb(0 0 0 / 18%), rgb(0 0 0 / 18%)),
+    #0b111b url("images/laser_illustration.png") center / cover no-repeat;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 6vw, 5rem);
 }
 
 .hero {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: min(100%, 42rem);
+  padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
+  border-radius: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--surface);
   text-align: center;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  /* Responsive background image */
-  background-color: #000; /* fills any empty space */
-  background-image: url("/images/laser_illustration.png");
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Image scales with window while keeping aspect ratio */
-  background-size: cover;   /* use 'cover' if you prefer cropping instead */
-  
-  /* Darken a bit */
-  filter: brightness(0.35) saturate(1.05);
-
-  z-index: -2;
-}
-
-
-/* Subtle space-themed glow overlay */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.12), transparent 55%),
-    radial-gradient(circle at 80% 100%, rgba(0, 153, 255, 0.18), transparent 55%);
-  mix-blend-mode: screen;
-  opacity: 0.6;
-  z-index: -1;
 }
 
 .hero-inner {
-  position: relative;
-  max-width: 1200px;
-  padding: 0 6vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(1.8rem, 2.5vh, 2.5rem);
 }
 
-/* Main title */
-.brand {
+/* An inset orbit provides a quiet nod to the space identity. */
+.orbit {
   position: relative;
-  z-index: 1;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: clamp(2.8rem, 9vw, 5.8rem);
-  line-height: 1.05;
-  color: #ffffff;
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin-bottom: 2.75rem;
+  border-radius: 50%;
+  box-shadow:
+    inset 5px 5px 10px var(--shadow),
+    inset -5px -5px 10px var(--light);
 }
 
-.coming-soon {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin-top: 10px;
-  letter-spacing: 2px;
-  color: #ffffffcc;    /* slightly soft white */
+.orbit::before {
+  content: "";
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 4px 4px 8px var(--shadow), -4px -4px 8px var(--light);
 }
 
-
-/* Satellite overlapping the text */
-.satellite {
+.orbit-curve {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -52%);
-  max-width: min(38vw, 460px);
-  height: auto;
-  z-index: 2;
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.6));
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: url(#orbit-intensity);
   pointer-events: none;
 }
 
-/* Mailto button */
+.orbit-curve stop {
+  stop-color: var(--beam);
+}
+
+.orbit span,
+.orbit::after {
+  position: absolute;
+  /* Centers sit on the outer circumference, at symmetric 45-degree angles. */
+  top: 14.644661%;
+  right: 14.644661%;
+  transform: translate(50%, -50%);
+  z-index: 1;
+  width: 0.365625rem;
+  height: 0.365625rem;
+  border-radius: 50%;
+  background: var(--beam);
+  box-shadow: 2px 2px 4px var(--shadow), -2px -2px 4px var(--light);
+}
+
+.orbit::after {
+  content: "";
+  right: auto;
+  left: 14.644661%;
+  transform: translate(-50%, -50%);
+}
+
+.brand {
+  margin: 0;
+  padding-left: 0.16em;
+  font-size: clamp(1.75rem, 7.5vw, 3.75rem);
+  font-weight: 700;
+  font-synthesis: weight;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.coming-soon {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+}
+
 .cta {
-  margin-top: clamp(2.8rem, 6vh, 3.6rem);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 2.8rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(8, 11, 22, 0.6);
-  backdrop-filter: blur(12px);
-  color: #ffffff;
+  min-height: 3.5rem;
+  margin-top: 3rem;
+  padding: 1rem 2.25rem;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-synthesis: weight;
+  line-height: 1.5;
   text-decoration: none;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition:
-    background 220ms ease,
-    transform 220ms ease,
-    box-shadow 220ms ease,
-    border-color 220ms ease;
-  z-index: 3;
+  box-shadow: 7px 7px 15px var(--shadow), -7px -7px 15px var(--light);
+  transition: box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.cta:hover,
+@media (hover: hover) {
+  .cta:hover {
+    color: #843a10;
+    transform: translateY(-2px);
+    box-shadow: 9px 9px 18px var(--shadow), -9px -9px 18px var(--light);
+  }
+}
+
 .cta:focus-visible {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.7);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
-  outline: none;
+  outline: 3px solid var(--accent);
+  outline-offset: 6px;
 }
 
 .cta:active {
   transform: translateY(0);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    inset 4px 4px 8px var(--shadow),
+    inset -4px -4px 8px var(--light);
 }
 
-/* Responsiveness */
-
-@media (max-width: 768px) {
-  .brand {
-    letter-spacing: 0.18em;
-    font-size: clamp(2.4rem, 9vw, 3.9rem);
+@media (max-width: 640px) {
+  .page {
+    /* Favor the laser source when the landscape image is cropped to portrait. */
+    background-position: center, 18% center;
+    padding: 2rem 1.5rem;
+    padding-top: max(2rem, env(safe-area-inset-top));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    padding-left: max(1.5rem, env(safe-area-inset-left));
   }
 
-  .satellite {
-    transform: translate(-50%, -50%);
-    max-width: min(55vw, 320px);
+  .hero {
+    width: min(100%, 24rem);
+    padding: 2.5rem 1.25rem;
+  }
+
+  .orbit {
+    margin-bottom: 2rem;
+  }
+
+  .brand {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
   }
 
   .cta {
-    padding: 0.8rem 2.1rem;
-    font-size: 0.85rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 640px) and (orientation: portrait) {
+  .page {
+    /* Match the mobile reference: diagonal laser above the card. */
+    background-size: 100% 100%, auto 150%;
+    background-position: center, 18% bottom;
   }
 }
 
 @media (max-height: 600px) {
-  .brand {
-    font-size: clamp(2.2rem, 7vw, 4rem);
+  .hero {
+    padding-block: 2rem;
   }
 
-  .satellite {
-    max-width: min(32vw, 280px);
+  .orbit {
+    margin-bottom: 1.75rem;
   }
 
   .cta {
-    margin-top: 1.6rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .hero,
+  .cta,
+  .orbit {
+    border: 1px solid CanvasText;
   }
 }
