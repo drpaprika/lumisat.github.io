@@ -24,7 +24,6 @@
   --text: #293b52;
   --muted: #586b82;
   --accent: #a64b16;
-  --beam: #a64b16;
 }
 
 *,
@@ -71,11 +70,13 @@ body {
 
 /* An inset orbit provides a quiet nod to the space identity. */
 .orbit {
+  --orbit-size: 5.5rem;
+  --orbit-radius: calc(var(--orbit-size) / 2);
   position: relative;
   display: grid;
   place-items: center;
-  width: 5.5rem;
-  height: 5.5rem;
+  width: var(--orbit-size);
+  height: var(--orbit-size);
   margin-bottom: 2.75rem;
   border-radius: 50%;
   box-shadow:
@@ -85,47 +86,34 @@ body {
 
 .orbit::before {
   content: "";
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: var(--surface);
   box-shadow: 4px 4px 8px var(--shadow), -4px -4px 8px var(--light);
 }
 
-.orbit-curve {
+.orbit span {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  fill: url(#orbit-intensity);
-  pointer-events: none;
-}
-
-.orbit-curve stop {
-  stop-color: var(--beam);
-}
-
-.orbit span,
-.orbit::after {
-  position: absolute;
-  /* Centers sit on the outer circumference, at symmetric 45-degree angles. */
-  top: 14.644661%;
-  right: 14.644661%;
-  transform: translate(50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg) translateX(var(--orbit-radius)) rotate(45deg);
   z-index: 1;
-  width: 0.365625rem;
-  height: 0.365625rem;
+  width: 0.625rem;
+  height: 0.625rem;
   border-radius: 50%;
-  background: var(--beam);
+  background: var(--accent);
   box-shadow: 2px 2px 4px var(--shadow), -2px -2px 4px var(--light);
+  animation: orbit-revolution 6s linear infinite;
 }
 
-.orbit::after {
-  content: "";
-  right: auto;
-  left: 14.644661%;
-  transform: translate(-50%, -50%);
+@keyframes orbit-revolution {
+  from {
+    transform: translate(-50%, -50%) rotate(-45deg) translateX(var(--orbit-radius)) rotate(45deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(315deg) translateX(var(--orbit-radius)) rotate(-315deg);
+  }
 }
 
 .brand {
@@ -236,6 +224,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .orbit span {
+    animation: none;
+  }
+
   .cta {
     transition: none;
   }
